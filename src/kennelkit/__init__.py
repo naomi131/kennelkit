@@ -3,6 +3,7 @@
 __version__ = "0.0.1"
 
 from kennelkit import db
+from kennelkit import ipc
 from kennelkit.fields import (
     BoolField,
     CategoryField,
@@ -55,4 +56,8 @@ __all__ = [
     "save_setting",
     "save_settings",
     "set_enabled",
+    # IPC
+    "__version__",
+    "db",
+    "ipc",
 ]
