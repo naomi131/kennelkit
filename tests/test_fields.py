@@ -51,7 +51,7 @@ class TestFieldNameBinding:
 
 
 # ---------- TextField ----------
-# For short response text
+# For short response text.
 
 
 class TestTextField:
@@ -88,7 +88,7 @@ class TestTextField:
             f.validate("abcdef")
 
 # ---------- TextAreaField ----------
-# For long response text
+# For long response text.
 
 class TestTextAreaField:
     def test_inherits_text_behavior(self):
