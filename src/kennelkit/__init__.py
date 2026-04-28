@@ -21,6 +21,13 @@ from kennelkit.modules import (
     ModuleError,
     registry,
 )
+from kennelkit.storage import (
+    is_enabled,
+    load_settings,
+    save_setting,
+    save_settings,
+    set_enabled,
+)
 
 
 __all__ = [
@@ -42,4 +49,10 @@ __all__ = [
     "Module",
     "ModuleError",
     "registry",
+    # Settings
+    "is_enabled",
+    "load_settings",
+    "save_setting",
+    "save_settings",
+    "set_enabled",
 ]

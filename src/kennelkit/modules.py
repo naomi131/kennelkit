@@ -108,6 +108,38 @@ class Module:
         # Register.
         registry.register(cls)
 
+# ---- Storage convenience methods ----
+
+    @classmethod
+    async def is_enabled(cls, guild_id: int) -> bool:
+        """Check if this module is fully enabled for a guild."""
+        from kennelkit.storage import is_enabled as _is_enabled
+        return await _is_enabled(cls.id, cls.__schema__, guild_id)
+
+    @classmethod
+    async def set_enabled(cls, guild_id: int, enabled: bool) -> None:
+        """Toggle this module's enabled state for a guild."""
+        from kennelkit.storage import set_enabled as _set_enabled
+        await _set_enabled(cls.id, guild_id, enabled)
+
+    @classmethod
+    async def settings_for(cls, guild_id: int):
+        """Load this module's settings for a guild as a typed object."""
+        from kennelkit.storage import load_settings
+        return await load_settings(cls.id, cls.__schema__, guild_id)
+
+    @classmethod
+    async def save_setting(cls, guild_id: int, key: str, value) -> None:
+        """Set one setting for a guild."""
+        from kennelkit.storage import save_setting
+        await save_setting(cls.id, cls.__schema__, guild_id, key, value)
+
+    @classmethod
+    async def save_settings(cls, guild_id: int, **values) -> None:
+        """Set multiple settings for a guild in one transaction."""
+        from kennelkit.storage import save_settings
+        await save_settings(cls.id, cls.__schema__, guild_id, values)
+
 
 def _build_schema(cls: type[Module]) -> dict[str, Field]:
     """Walk cls.Settings (if any) and collect Field instances."""
