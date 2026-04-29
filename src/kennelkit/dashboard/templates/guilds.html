@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Servers — {{ bot_name }}{% endblock %}
+
+{% macro guild_card(g, href) %}
+  <a href="{{ href }}"
+     class="relative block w-32 h-32 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:scale-105 transition-all bg-base-200">
+    {% if g.icon_url %}
+      <img src="{{ g.icon_url }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+    {% else %}
+      <div class="absolute inset-0 flex items-center justify-center bg-base-300 text-3xl font-bold">
+        {{ g.name[0] | upper }}
+      </div>
+    {% endif %}
+    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+      <p class="text-white text-sm font-medium truncate">{{ g.name }}</p>
+    </div>
+  </a>
+{% endmacro %}
+
+{% block content %}
+  {% if not bot_online %}
+    <div class="alert alert-warning mb-6 max-w-xl mx-auto">
+      <span>The bot is currently offline. Try again in a moment.</span>
+    </div>
+  {% endif %}
+
+  {% if with_bot %}
+    <h1 class="text-3xl font-bold text-center mb-6">{{ bot_name }} servers</h1>
+    <div class="flex flex-wrap justify-center gap-4 mb-12 max-w-5xl mx-auto">
+      {% for g in with_bot %}
+        {{ guild_card(g, "/guild/" ~ g.id ~ "/modules") }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if without_bot %}
+    {% if with_bot %}
+      <h1 class="text-3xl font-bold text-center mb-6">Add {{ bot_name }} to a server</h1>
+    {% else %}
+      <h1 class="text-2xl font-bold text-center mb-6">Click on one of your guilds below to add {{ bot_name }} to it.</h1>
+    {% endif %}
+    <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+      {% for g in without_bot %}
+        {{ guild_card(g, "https://discord.com/oauth2/authorize?client_id=" ~ client_id ~ "&scope=bot+applications.commands&permissions=8&guild_id=" ~ g.id) }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if not with_bot and not without_bot and bot_online %}
+    <div class="alert max-w-xl mx-auto">
+      <span>You don't have Manage Server permission in any servers.</span>
+    </div>
+  {% endif %}
+{% endblock %}

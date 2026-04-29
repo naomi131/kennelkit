@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ theme }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ bot_name }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+</head>
+<body class="min-h-screen bg-base-100 text-base-content">
+
+  <div class="navbar bg-base-200 shadow-sm">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost text-xl">
+        {% if bot_logo_url %}
+          <img src="{{ bot_logo_url }}" alt="" class="w-8 h-8 rounded-full">
+        {% endif %}
+        {{ bot_name }}
+      </a>
+    </div>
+  </div>
+
+  <main class="container mx-auto p-6">
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

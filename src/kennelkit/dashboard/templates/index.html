@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home — {{ bot_name }}{% endblock %}
+
+{% block content %}
+  <div class="hero bg-base-200 rounded-box">
+    <div class="hero-content text-center py-12">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">{{ bot_name }}</h1>
+        <p class="py-6">Configure your bot per-server through the dashboard.</p>
+
+        <a href="{{ url_for('login') }}" class="btn btn-primary">
+          <img src="{{ url_for('static', filename='img/discord.svg') }}"
+               alt=""
+               class="w-5 h-5">
+          Login with Discord
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

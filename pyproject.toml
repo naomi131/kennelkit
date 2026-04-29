@@ -51,6 +51,9 @@ Issues = "https://github.com/naomi131/kennelkit/issues"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+kennelkit = ["dashboard/templates/*.html", "dashboard/static/img/*"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]

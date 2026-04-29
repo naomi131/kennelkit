@@ -1,0 +1,13 @@
+{
+  "name": "kennelkit",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/kennelkit/dashboard/static/css/input.css -o ./src/kennelkit/dashboard/static/css/output.css",
+    "watch:css": "tailwindcss -i ./src/kennelkit/dashboard/static/css/input.css -o ./src/kennelkit/dashboard/static/css/output.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "daisyui": "^5.5.19",
+    "tailwindcss": "^4.2.4"
+  }
+}
